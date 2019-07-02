@@ -15,6 +15,20 @@ make
 ## Usage
 
 
+## Testing
+
+After Installing, run the tests by
+
+```
+make test
+```
+
+OR
+
+```
+ctest --verbose
+```
+
 
 ## TODO
 

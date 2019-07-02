@@ -1,12 +1,14 @@
+#pragma once
+
+#include "BinaryOperator.h"
 #include "Expression.h"
-#include <string>
 
 class Parser
 {
 public:
-    static Expression& parse(std::string& input);
+    Parser(const char* input);
+    ExpressionPtr createAst() const;
 
 private:
-    // Disallow creating an instance of this object
-    Parser() {}
+    const char* m_input;
 };
