@@ -1,11 +1,11 @@
 #include "Division.h"
 
-Division::Division(const Expression &left, const Expression &right)
+Division::Division(ExpressionPtr left, ExpressionPtr right)
     : BinaryOperator(left, right)
 {
 }
 
 double Division::evaluate() const
 {
-    return m_left.evaluate() / m_right.evaluate();
+    return m_left->evaluate() / m_right->evaluate();
 }

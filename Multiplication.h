@@ -5,6 +5,6 @@
 class Multiplication : public BinaryOperator
 {
 public:
-    Multiplication(const Expression &left, const Expression &right);
+    Multiplication(ExpressionPtr left, ExpressionPtr right);
     double evaluate() const;
 };

@@ -16,5 +16,5 @@ BOOST_AUTO_TEST_CASE(invalid_input)
 BOOST_AUTO_TEST_CASE(valid_input)
 {
     Parser parser("2 + 3");
-    parser.createAst();
+    BOOST_CHECK_EQUAL(parser.createAst()->evaluate(), 5);
 }
