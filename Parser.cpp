@@ -28,6 +28,15 @@ ExpressionPtr Parser::createAst() const
             operatorStack.push(c);
             break;
 
+        case ')':
+            moveOperatorsUntil(expressionStack, operatorStack,
+                               [c](char top) { return top != '('; });
+            
+            if (operatorStack.empty())
+                throw std::invalid_argument("Unbalanced Parathesis");
+            operatorStack.pop();
+            break;
+
         default:
             if (isOperator(c))
             {
@@ -48,6 +57,10 @@ ExpressionPtr Parser::createAst() const
     }
     moveOperatorsUntil(expressionStack, operatorStack,
                        [](char) { return true; });
+    
+    if (expressionStack.size() != 1)
+        throw std::invalid_argument("Extra operators and/or operands");
+    
     return expressionStack.top();
 }
 
@@ -68,7 +81,7 @@ int Parser::precendenceOf(char c)
         return 10;
     case '(':
     case ')':
-        return 100;
+        return -10;
 
     default:
         throw std::invalid_argument("Not an operator" + c);
@@ -102,6 +115,9 @@ void Parser::moveOperatorsUntil(std::stack<ExpressionPtr>& expressionStack,
         char operatorChar = operatorStack.top();
         operatorStack.pop();
 
+        if (expressionStack.size() < 2)
+            throw std::invalid_argument("Missing operands for operator " + operatorChar);
+        
         ExpressionPtr right = expressionStack.top();
         expressionStack.pop();
         ExpressionPtr left = expressionStack.top();
