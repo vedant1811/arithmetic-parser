@@ -1,9 +1,9 @@
-#include "Addition.h"
-#include "Division.h"
-#include "Multiplication.h"
-#include "Integer.h"
+#include "expressions/operators/Addition.h"
+#include "expressions/operators/Division.h"
+#include "expressions/operators/Multiplication.h"
+#include "expressions/Integer.h"
 #include "Parser.h"
-#include "Subtraction.h"
+#include "expressions/operators/Subtraction.h"
 #include <iostream>
 
 Parser::Parser(const char *input)

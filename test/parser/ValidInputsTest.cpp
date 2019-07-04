@@ -72,6 +72,12 @@ BOOST_AUTO_TEST_CASE(integer_division_rounding)
     BOOST_CHECK_EQUAL((int)parser.createAst()->evaluate(), 0);
 }
 
+BOOST_AUTO_TEST_CASE(integer_division_rounding_2)
+{
+    Parser parser("2/6*3");
+    BOOST_CHECK_EQUAL((int)parser.createAst()->evaluate(), 1);
+}
+
 BOOST_AUTO_TEST_CASE(arithmetic)
 {
     Parser parser("(4 + 5 * (7 - 3)) - 2");

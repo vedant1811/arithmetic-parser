@@ -1,7 +1,7 @@
 #pragma once
 
-#include "BinaryOperator.h"
-#include "Expression.h"
+#include "expressions/operators/BinaryOperator.h"
+#include "expressions/Expression.h"
 #include <stack>
 
 class Parser

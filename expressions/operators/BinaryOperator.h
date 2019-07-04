@@ -1,6 +1,6 @@
 #pragma once 
 
-#include "Expression.h"
+#include "expressions/Expression.h"
 
 class BinaryOperator : public Expression
 {

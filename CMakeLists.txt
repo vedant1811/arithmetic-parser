@@ -9,7 +9,7 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
 include_directories("${PROJECT_SOURCE_DIR}")
 
-file(GLOB CPP_SOURCES ${PROJECT_SOURCE_DIR}/*.cpp)
+file(GLOB_RECURSE CPP_SOURCES ${PROJECT_SOURCE_DIR}/*.cpp)
 
 add_library(parseLib ${CPP_SOURCES})
 
@@ -27,7 +27,7 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 include_directories (${Boost_INCLUDE_DIRS})
 
 # Test files are in a separate source directory called test
-file(GLOB TEST_SRCS RELATIVE ${CMAKE_SOURCE_DIR} test/*.cpp)
+file(GLOB_RECURSE TEST_SRCS RELATIVE ${CMAKE_SOURCE_DIR} test/*.cpp)
 
 # Run through each source
 foreach(testSrc ${TEST_SRCS})
