@@ -6,6 +6,8 @@
 #include "expressions/operators/Subtraction.h"
 #include <iostream>
 
+using namespace std;
+
 Parser::Parser(const char *input)
     : m_input(input)
 {
@@ -13,10 +15,10 @@ Parser::Parser(const char *input)
 
 ExpressionPtr const Parser::createAst() const
 {
-    std::stack<ExpressionPtr> expressionStack;
-    std::stack<char> operatorStack;
+    stack<ExpressionPtr> expressionStack;
+    stack<char> operatorStack;
 
-    for (char& c : std::string(m_input))
+    for (char& c : string(m_input))
     {
         switch (c)
         {
@@ -33,7 +35,7 @@ ExpressionPtr const Parser::createAst() const
                                [c](char const top) { return top != '('; });
             
             if (operatorStack.empty())
-                throw std::invalid_argument("Unbalanced Parathesis");
+                throw invalid_argument("Unbalanced Parathesis");
             operatorStack.pop();
             break;
 
@@ -45,12 +47,12 @@ ExpressionPtr const Parser::createAst() const
 
                 operatorStack.push(c);
             }
-            else if (std::isdigit(c))
+            else if (isdigit(c))
             {
                 expressionStack.push(createExpressionPtr<Integer>(atoi(&c)));
             }
             else
-                throw std::invalid_argument("Unknown Literal: " + c);
+                throw invalid_argument(string("Unknown Literal: ") + c);
 
             break;
         }
@@ -59,7 +61,7 @@ ExpressionPtr const Parser::createAst() const
                        [](char) { return true; });
     
     if (expressionStack.size() != 1)
-        throw std::invalid_argument("Extra operators and/or operands");
+        throw invalid_argument("Extra operators and/or operands");
     
     return expressionStack.top();
 }
@@ -84,7 +86,7 @@ int Parser::precendenceOf(char const c)
         return -10;
 
     default:
-        throw std::invalid_argument("Not an operator" + c);
+        throw invalid_argument(string("Not an operator") + c);
     }
 }
 
@@ -101,13 +103,13 @@ ExpressionPtr const Parser::createOperator(char const c, ExpressionPtr const lef
     case '/':
         return createExpressionPtr<Division>(left, right);
     default:
-        throw std::invalid_argument("Not an operator" + c);
+        throw invalid_argument(string("Not an operator") + c);
     }
 }
 
 template <typename F>
-void Parser::moveOperatorsUntil(std::stack<ExpressionPtr>& expressionStack,
-                                std::stack<char>& operatorStack,
+void Parser::moveOperatorsUntil(stack<ExpressionPtr>& expressionStack,
+                                stack<char>& operatorStack,
                                 F const condition)
 {
     while (!operatorStack.empty() && condition(operatorStack.top()))
@@ -116,7 +118,7 @@ void Parser::moveOperatorsUntil(std::stack<ExpressionPtr>& expressionStack,
         operatorStack.pop();
 
         if (expressionStack.size() < 2)
-            throw std::invalid_argument("Missing operands for operator " + operatorChar);
+            throw invalid_argument(string("Missing operands for operator ") + operatorChar);
         
         ExpressionPtr const right = expressionStack.top();
         expressionStack.pop();

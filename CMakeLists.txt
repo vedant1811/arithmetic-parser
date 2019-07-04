@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5.0)
 
-set(PROJECT_VERSION "0.5.10")
+set(PROJECT_VERSION "0.1.0")
 project(arithmetic-parser VERSION ${PROJECT_VERSION} LANGUAGES CXX)
 
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
@@ -11,12 +11,13 @@ include_directories("${PROJECT_SOURCE_DIR}")
 
 file(GLOB_RECURSE CPP_SOURCES ${PROJECT_SOURCE_DIR}/*.cpp)
 
+# Create a library to link with main.cpp and tests.
 add_library(parseLib ${CPP_SOURCES})
 
 add_executable(parse ${PROJECT_SOURCE_DIR}/main.cpp)
 target_link_libraries(parse parseLib)
 
-# treat all warnings as errors 
+# Treat all warnings as errors 
 target_compile_options(parseLib PRIVATE -Werror -Wall -Wextra)
 
 # Setup CMake to run tests
