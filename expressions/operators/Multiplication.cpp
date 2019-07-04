@@ -1,6 +1,6 @@
 #include "Multiplication.h"
 
-Multiplication::Multiplication(ExpressionPtr left, ExpressionPtr right)
+Multiplication::Multiplication(ExpressionPtr const left, ExpressionPtr const right)
     : BinaryOperator(left, right)
 {
 }

@@ -1,6 +1,6 @@
 #include "Subtraction.h"
 
-Subtraction::Subtraction(ExpressionPtr left, ExpressionPtr right)
+Subtraction::Subtraction(ExpressionPtr const left, ExpressionPtr const right)
     : BinaryOperator(left, right)
 {
 }

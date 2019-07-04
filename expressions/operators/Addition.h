@@ -5,6 +5,6 @@
 class Addition : public BinaryOperator
 {
 public:
-    Addition(ExpressionPtr left, ExpressionPtr right);
+    Addition(ExpressionPtr const left, ExpressionPtr const right);
     int evaluate() const;
 };

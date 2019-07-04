@@ -11,7 +11,7 @@ Parser::Parser(const char *input)
 {
 }
 
-ExpressionPtr Parser::createAst() const
+ExpressionPtr const Parser::createAst() const
 {
     std::stack<ExpressionPtr> expressionStack;
     std::stack<char> operatorStack;
@@ -30,7 +30,7 @@ ExpressionPtr Parser::createAst() const
 
         case ')':
             moveOperatorsUntil(expressionStack, operatorStack,
-                               [c](char top) { return top != '('; });
+                               [c](char const top) { return top != '('; });
             
             if (operatorStack.empty())
                 throw std::invalid_argument("Unbalanced Parathesis");
@@ -41,7 +41,7 @@ ExpressionPtr Parser::createAst() const
             if (isOperator(c))
             {
                 moveOperatorsUntil(expressionStack, operatorStack,
-                                   [c](char top) { return precendenceOf(top) >= precendenceOf(c); });
+                                   [c](char const top) { return precendenceOf(top) >= precendenceOf(c); });
 
                 operatorStack.push(c);
             }
@@ -64,12 +64,12 @@ ExpressionPtr Parser::createAst() const
     return expressionStack.top();
 }
 
-bool Parser::isOperator(char c)
+bool Parser::isOperator(char const c)
 {
    return c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')';
 }
 
-int Parser::precendenceOf(char c)
+int Parser::precendenceOf(char const c)
 {
     switch (c)
     {
@@ -88,7 +88,7 @@ int Parser::precendenceOf(char c)
     }
 }
 
-ExpressionPtr Parser::createOperator(char c, ExpressionPtr left, ExpressionPtr right)
+ExpressionPtr const Parser::createOperator(char const c, ExpressionPtr const left, ExpressionPtr const right)
 {
     switch (c)
     {
@@ -108,7 +108,7 @@ ExpressionPtr Parser::createOperator(char c, ExpressionPtr left, ExpressionPtr r
 template <typename F>
 void Parser::moveOperatorsUntil(std::stack<ExpressionPtr>& expressionStack,
                                 std::stack<char>& operatorStack,
-                                F condition)
+                                F const condition)
 {
     while (!operatorStack.empty() && condition(operatorStack.top()))
     {
@@ -118,9 +118,9 @@ void Parser::moveOperatorsUntil(std::stack<ExpressionPtr>& expressionStack,
         if (expressionStack.size() < 2)
             throw std::invalid_argument("Missing operands for operator " + operatorChar);
         
-        ExpressionPtr right = expressionStack.top();
+        ExpressionPtr const right = expressionStack.top();
         expressionStack.pop();
-        ExpressionPtr left = expressionStack.top();
+        ExpressionPtr const left = expressionStack.top();
         expressionStack.pop();
         expressionStack.push(createOperator(operatorChar, left, right));
     }

@@ -21,6 +21,6 @@ template <typename ExprClass, typename... Args>
 inline static ExpressionPtr
 createExpressionPtr(Args &&... args)
 {
-    auto i = std::make_shared<ExprClass>((args)...);
+    auto const i = std::make_shared<ExprClass>((args)...);
     return std::static_pointer_cast<Expression>(i);
 }

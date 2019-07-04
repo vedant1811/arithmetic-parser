@@ -1,6 +1,6 @@
 #include "Addition.h"
 
-Addition::Addition(ExpressionPtr left, ExpressionPtr right)
+Addition::Addition(ExpressionPtr const left, ExpressionPtr const right)
     : BinaryOperator(left, right)
 {
 }

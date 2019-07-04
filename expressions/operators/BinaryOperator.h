@@ -5,11 +5,11 @@
 class BinaryOperator : public Expression
 {
 public:
-    BinaryOperator(ExpressionPtr left, ExpressionPtr right)
+    BinaryOperator(ExpressionPtr const left, ExpressionPtr const right)
         : m_left(left), m_right(right) {}
 
     virtual ~BinaryOperator() = default;
 protected:
-    ExpressionPtr m_left;
-    ExpressionPtr m_right;
+    ExpressionPtr const m_left;
+    ExpressionPtr const m_right;
 };

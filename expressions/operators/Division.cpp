@@ -1,6 +1,6 @@
 #include "Division.h"
 
-Division::Division(ExpressionPtr left, ExpressionPtr right)
+Division::Division(ExpressionPtr const left, ExpressionPtr const right)
     : BinaryOperator(left, right)
 {
 }

@@ -15,13 +15,13 @@ public:
      * 
      * @returns the root of the AST
      */
-    ExpressionPtr createAst() const;
+    ExpressionPtr const createAst() const;
 
 private:
-    static bool isOperator(char c);
-    static int precendenceOf(char c);
+    static bool isOperator(char const c);
+    static int precendenceOf(char const c);
 
-    static ExpressionPtr createOperator(char c, ExpressionPtr left, ExpressionPtr right);
+    static ExpressionPtr const createOperator(char const c, ExpressionPtr const left, ExpressionPtr const right);
     
     /**
      * Moves operators from @param operatorStack to @param expressionStack,
@@ -30,7 +30,7 @@ private:
     template<typename F>
     static void moveOperatorsUntil(std::stack<ExpressionPtr>& expressionStack,
                                    std::stack<char>& operatorStack,
-                                   F condition);
+                                   F const condition);
 
     const char* m_input;
 };

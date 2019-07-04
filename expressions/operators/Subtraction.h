@@ -5,6 +5,6 @@
 class Subtraction : public BinaryOperator
 {
 public:
-    Subtraction(ExpressionPtr left, ExpressionPtr right);
+    Subtraction(ExpressionPtr const left, ExpressionPtr const right);
     int evaluate() const;
 };

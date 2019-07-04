@@ -5,6 +5,6 @@
 class Division : public BinaryOperator
 {
 public:
-    Division(ExpressionPtr left, ExpressionPtr right);
+    Division(ExpressionPtr const left, ExpressionPtr const right);
     int evaluate() const;
 };
