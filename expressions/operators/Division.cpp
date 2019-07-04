@@ -5,7 +5,7 @@ Division::Division(ExpressionPtr left, ExpressionPtr right)
 {
 }
 
-double Division::evaluate() const
+int Division::evaluate() const
 {
     return m_left->evaluate() / m_right->evaluate();
 }

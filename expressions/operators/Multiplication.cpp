@@ -5,7 +5,7 @@ Multiplication::Multiplication(ExpressionPtr left, ExpressionPtr right)
 {
 }
 
-double Multiplication::evaluate() const
+int Multiplication::evaluate() const
 {
     return m_left->evaluate() * m_right->evaluate();
 }

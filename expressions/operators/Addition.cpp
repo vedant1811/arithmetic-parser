@@ -5,7 +5,7 @@ Addition::Addition(ExpressionPtr left, ExpressionPtr right)
 {
 }
 
-double Addition::evaluate() const
+int Addition::evaluate() const
 {
     return m_left->evaluate() + m_right->evaluate();
 }

@@ -10,7 +10,7 @@ public:
     virtual ~Expression() = default;
     
     // Evaluate this expression
-    virtual double evaluate() const = 0;
+    virtual int evaluate() const = 0;
 };
 
 typedef std::shared_ptr<Expression const> ExpressionPtr;

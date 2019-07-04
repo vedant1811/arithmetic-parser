@@ -5,7 +5,7 @@ Integer::Integer(const int value)
 {
 }
 
-double Integer::evaluate() const 
+int Integer::evaluate() const 
 {
     return m_value;
 }
